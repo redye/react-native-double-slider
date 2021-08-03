@@ -2,6 +2,8 @@
 
 A slider that supports two-way sliding
 
+![screenshots](https://github.com/redye/react-native-double-slider/blob/master/screenshots/1.png)
+
 ## Installation
 
 ```sh
@@ -33,17 +35,17 @@ export default class App extends PureComponent {
         <View style={styles.box}>
           <Text>Default slider</Text>
           <View style={styles.valueBox}>
-            <Text>{slider1.minValue || ''}</Text>
-            <Text>{slider1.maxValue || ''}</Text>
+            <Text>{slider.minValue || ''}</Text>
+            <Text>{slider.maxValue || ''}</Text>
           </View>
           <DoubleSlider
             style={styles.slider}
             thumbStyle={styles.shadowStyle}
-            minValue={0}
-            maxValue={1}
+            minValue={parseInt(slider.minValue, 10)}
+            maxValue={parseInt(slider.maxValue, 10)}
             onValueChanged={(minValue, maxValue) => {
               this.setState({
-                slider1: {
+                slider: {
                   minValue: Math.min(minValue, maxValue).toFixed(2),
                   maxValue: Math.max(minValue, maxValue).toFixed(2),
                 },
@@ -59,20 +61,18 @@ export default class App extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingVertical: 30,
   },
   box: {
-    marginBottom: 20,
+    marginBottom: 10,
     marginHorizontal: 15,
   },
   valueBox: {
-    marginTop: 10,
+    marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  slider: {
-    marginTop: 10,
-  },
+  slider: {},
   shadowStyle: {
     shadowColor: '#000',
     shadowOffset: {
@@ -87,9 +87,31 @@ const styles = StyleSheet.create({
 
 ```
 
-## Contributing
+## Props
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+| Prop | Type | Optional | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| minValue | number | true | 0 | 当前最小值 |
+| maxValue | number | true | 1 | 当前最大值 |
+| disabled | bool | true | false | 是否可滑动 |
+| minimumValue | number | true | 0 | 可滑动的最小值 |
+| maximumValue | number | true | 0 | 可滑动的最大值 |
+| step | number | true | 0 | step |
+| defaultTrackTintColor | string | true | `#EEEEEE` | 默认颜色 |
+| highlightTrackTintColor | string | true | `#15A25F` | 高亮颜色 |
+| thumbTintColor | string | true | #15A25F | 滑块颜色 |
+| thumbTouchSize | object | true | `{width: 40, height: 40}` |  滑块大小  |
+| onValueChanged | function | true | -  | 值发生改变时的回调 |
+| onSlidingStart | function | true |  -  | 开始滑动时的回调 |
+| onSlidingComplete | function | true | - | 滑动结束时的回调 |
+| style | style | true | - | 样式 |
+| trackStyle | style | true | - | 高亮部分的样式 |
+| thumbStyle | style | true | - | 滑块的样式 |
+| thumbImage | source | true | - | 滑块的图片 |
+| animateTransitions | bool | true | false | 动画 |
+| animationType | string | true | `timing` | 动画方式：`timing`、`spring` 中的一种 |
+| animationConfig | object | true | - | 动画配置 |
+
 
 ## License
 

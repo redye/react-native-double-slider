@@ -1,6 +1,6 @@
 # react-native-double-slider
 
-A slider that supports two-way sliding
+A slider that supports two-way sliding.
 
 ![screenshots](https://github.com/redye/react-native-double-slider/blob/master/screenshots/1.png)
 
